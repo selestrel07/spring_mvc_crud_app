@@ -1,6 +1,5 @@
 package ru.selestrel.learn.spring.controllers;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.selestrel.learn.spring.dao.PersonDAO;
 import ru.selestrel.learn.spring.models.Person;
 import ru.selestrel.learn.spring.util.PersonValidator;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/people")
