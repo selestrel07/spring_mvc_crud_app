@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.selestrel.learn.spring.models.Person;
+import ru.selestrel.learn.spring.services.ItemsService;
 import ru.selestrel.learn.spring.services.PeopleService;
 import ru.selestrel.learn.spring.util.PersonValidator;
 
@@ -17,16 +18,22 @@ public class PeopleController {
 
     private final PersonValidator personValidator;
     private final PeopleService peopleService;
+    private final ItemsService itemsService;
 
     @Autowired
-    public PeopleController(PersonValidator personValidator, PeopleService peopleService) {
+    public PeopleController(PersonValidator personValidator, PeopleService peopleService, ItemsService itemsService) {
         this.personValidator = personValidator;
         this.peopleService = peopleService;
+        this.itemsService = itemsService;
     }
 
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("people", peopleService.findAll());
+
+        itemsService.findByItemName("Airpods");
+        itemsService.findByOwner(peopleService.findAll().get(0));
+        peopleService.test();
         return "people/index";
     }
 
