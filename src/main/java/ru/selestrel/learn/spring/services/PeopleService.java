@@ -3,9 +3,11 @@ package ru.selestrel.learn.spring.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.selestrel.learn.spring.models.Mood;
 import ru.selestrel.learn.spring.models.Person;
 import ru.selestrel.learn.spring.repositories.PeopleRepository;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,6 +31,9 @@ public class PeopleService {
 
     @Transactional
     public void save(Person person) {
+        person.setCreatedAt(new Date());
+        person.setMood(Mood.CALM);
+
         peopleRepository.save(person);
     }
 
